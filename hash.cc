@@ -105,26 +105,15 @@ int main(int argc, char *argv[]) {
     json locations;
     ifstream locs("locations.json");
     locs >> locations;
-    locs.close();
 
-    vector<string> files = locations["gustavo"]["archivos"];
-    for(const string& f: files) {
-      cout << f << endl;
-    }
-    cout << files.size() << endl;
+    unordered_map<string,string> location;
 
-    std::ofstream output("locations.json");
-    output << std::setw(4) << locations << std::endl;
+    string fname("uthash.h");
+    string hash = getSHA1(fname);
 
-    //
-    // unordered_map<string,string> location;
-    //
-    // string fname("uthash.h");
-    // string hash = getSHA1(fname);
-    //
-    // location[hash] = fname;
-    //
-    // cout << location.size() << endl;
+    location[hash] = fname;
+
+    cout << location.size() << endl;
 
 
     //
